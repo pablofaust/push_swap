@@ -6,7 +6,7 @@ void			ft_read_stacks(t_stacks stacks)
 	int			i;
 
 	ptr = stacks;
-	if (ptr.a)
+	if (ptr.nb_a > 0)
 	{
 		i = ptr.nb_a - 1;
 		ft_putstr("STACK a :\n");
@@ -16,16 +16,19 @@ void			ft_read_stacks(t_stacks stacks)
 			ft_putstr("\n");
 		}
 	}
-	if (ptr.b)
+	ft_putstr("\n");
+	if (ptr.nb_b > 0)
 	{
-		i = 0;
+		i = ptr.nb_b - 1;
 		ft_putstr("STACK b :\n");
-		while (i < ptr.nb_b)
+		while (i >= 0)
 		{
-			ft_putnbr(ptr.b[i++]);
+			ft_putnbr(ptr.b[i--]);
 			ft_putstr("\n");
 		}
 	}
+	ft_putstr("\n");
+	ft_putstr("\n");
 }
 
 void		ft_create_av_stack(int *a, char **av)

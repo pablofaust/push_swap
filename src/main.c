@@ -9,9 +9,11 @@ int				main(int ac, char **av)
 	if (!(stacks.a = malloc(sizeof(int) * ac - 1)))
 		return (0);
 	ft_create_av_stack(stacks.a, av);
+	if (!(stacks.b = malloc(sizeof(int) * ac - 1)))
+		return (0);
 	stacks.nb_a = ac - 1;
 	ft_read_stacks(stacks);
-	ft_sa(stacks);
+	ft_rra(&stacks);
 	ft_read_stacks(stacks);
 	return (1);
 }
