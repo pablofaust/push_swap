@@ -31,13 +31,14 @@ void			ft_read_stacks(t_stacks stacks)
 	ft_putstr("\n");
 }
 
-void		ft_create_av_stack(int *a, char **av)
+void		ft_create_av_stack(int ac, int *a, char **av, int *nb)
 {
 	int		i;
 	int		j;
 
 	i = 1;
-	j = 0;
+	j = ac - 2;
+	*nb = ac - 1;
 	while (av[i])
-		a[j++] = ft_atoi(av[i++]);
+		a[j--] = ft_atoi(av[i++]);
 }

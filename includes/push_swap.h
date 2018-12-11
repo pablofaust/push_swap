@@ -11,11 +11,11 @@ typedef struct		s_stacks
 	int				nb_b;
 }					t_stacks;
 
-void			ft_create_av_stack(int *a, char **av);
+void			ft_create_av_stack(int ac, int *a, char **av, int *nb);
 void			ft_read_stacks(t_stacks stacks);
-void			ft_sa(t_stacks stacks);
-void			ft_sb(t_stacks stacks);
-void			ft_ss(t_stacks stacks);
+void			ft_sa(t_stacks *stacks);
+void			ft_sb(t_stacks *stacks);
+void			ft_ss(t_stacks *stacks);
 void			ft_pa(t_stacks *stacks);
 void			ft_pb(t_stacks *stacks);
 void			ft_ra(t_stacks *stacks);
