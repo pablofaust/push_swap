@@ -8,11 +8,12 @@ int				main(int ac, char **av)
 		return (0);
 	if (!(stacks.a = malloc(sizeof(int) * ac - 1)))
 		return (0);
-	ft_create_av_stack(ac, stacks.b, av, &stacks.nb_b);
 	if (!(stacks.b = malloc(sizeof(int) * ac - 1)))
 		return (0);
+	ft_create_av_stack(ac, stacks.a, av, &stacks.nb_a);
+	ft_create_av_stack(ac, stacks.b, av, &stacks.nb_b);
 	ft_read_stacks(stacks);
-	ft_sb(&stacks);
+	ft_rrr(&stacks);
 	ft_read_stacks(stacks);
 	return (1);
 
