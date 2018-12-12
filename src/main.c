@@ -14,11 +14,13 @@ int				main(int ac, char **av)
 		return (0);
 	if (!(stacks.a = malloc(sizeof(int) * ac - 1)))
 		return (0);
-	if (!(ft_create_av_stack(ac, stacks.a, av, &stacks.nb_a)))
-		return (0);
 	if (!(stacks.b = malloc(sizeof(int) * ac - 1)))
 		return (0);
-	ft_sort(&stacks);
+	if (!(ft_create_av_stack(ac, stacks.a, av, &stacks.nb_a)))
+		return (0);
+//	ft_sort(&stacks);
+	ft_read_stacks(stacks);
+	ft_rra(&stacks);
 	ft_read_stacks(stacks);
 	return (1);
 }

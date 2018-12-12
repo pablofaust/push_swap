@@ -1,37 +1,55 @@
 #include "../includes/push_swap.h"
 
-static void	ft_find_biggest(int *i, int *tab, int n, int max)
+static int	ft_find_index(int *i, int *tab, int n, int find)
 {
-	printf("max = %d\n", max);
-	while (tab[*i] != max)
+	while (*i < n)
+	{
+		if (tab[*i] == find)
+			return (1);
 		(*i)++;
+	}
+	return (0);
 }
 
 void		ft_insertion_sort(t_stacks *stacks)
 {
+	int		max;
 	int		i;
-	int		max;	
 
-	i = 0;
 	max = stacks->nb_a;
-	while (stacks->nb_a > 1)
+	while (max)
 	{
-		ft_read(stacks->a, &stacks->nb_a);
-		ft_find_biggest(&i, stacks->a, stacks->nb_a, max);
-		printf("i = %d\n", i);
-		if (i == 0)
+		printf("max = %d\n", max);
+		i = 0;
+		while (ft_find_index(&i, stacks->a, stacks->nb_a, max))
 		{
-			ft_pb(stacks);
-			max--;
+			ft_read_stacks(*stacks);
+			printf("i = %d\n", i);
+			if (i == 0)
+			{
+				printf("PB\n");
+				ft_pb(stacks);
+				i = 0;
+			}
+			else if (i == 1)
+			{
+				printf("SA\n");
+				ft_sa(stacks);
+				i = 0;
+			}
+			else if (i <= (stacks->nb_a) / 2)
+			{
+				printf("RA\n");
+				ft_ra(stacks);
+				i = 0;
+			}
+			else if (i > (stacks->nb_a) / 2)
+			{
+				printf("RRA\n");
+				ft_rra(stacks);
+				i = 0;
+			}
 		}
-		else if (i == 1)
-		{
-			printf("SA\n");	
-			ft_sa(stacks);
-		}
-		else if (i <= (stacks->nb_a - 1) / 2)
-			ft_ra(stacks);
-		else if (i > (stacks->nb_a - 1) / 2)
-			ft_rra(stacks);
+		max--;
 	}
 }
