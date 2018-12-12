@@ -24,4 +24,6 @@ void			ft_rr(t_stacks *stacks);
 void			ft_rra(t_stacks *stacks);
 void			ft_rrb(t_stacks *stacks);
 void			ft_rrr(t_stacks *stacks);
+void			ft_insertion_sort(t_stacks *stacks);
+void			ft_read(int *a, int *nb);
 #endif

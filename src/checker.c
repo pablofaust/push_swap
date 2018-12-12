@@ -53,6 +53,8 @@ void			ft_do_op(t_stacks *stacks, char *op)
 void			ft_stack_is_sort(t_stacks stacks)
 {
 	int		i;
+	int		err;
+
 	if (stacks.nb_b != 0)
 	{
 		ft_putstr("KO\n");
@@ -60,13 +62,17 @@ void			ft_stack_is_sort(t_stacks stacks)
 	}
 	else
 	{
-		i = 0;
-		while (stacks.a[i + 1] && stacks.a[i] > stacks.a[i + 1])
+		i = 1;
+		while (i < stacks.nb_a)
+		{
+			if (stacks.a[i - 1] > stacks.a[i])
+			{
+				ft_putstr("KO\n");
+				return ;
+			}
 			i++;
-		if (i == stacks.nb_a - 1)
-			ft_putstr("OK\n");
-		else
-			ft_putstr("KO\n");
+		}
+		ft_putstr("OK\n");
 		return ;
 	}
 }

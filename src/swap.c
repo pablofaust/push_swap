@@ -8,9 +8,9 @@ void		ft_sa(t_stacks *stacks)
 	{
 		if (stacks->nb_a < 2)
 			return ;
-		ptr = stacks->a[stacks->nb_a - 1];	
-		stacks->a[stacks->nb_a - 1] = stacks->a[stacks->nb_a - 2];
-		stacks->a[stacks->nb_a - 2] = ptr;
+		ptr = stacks->a[0];	
+		stacks->a[0] = stacks->a[1];
+		stacks->a[1] = ptr;
 	}
 }
 
@@ -22,9 +22,9 @@ void		ft_sb(t_stacks *stacks)
 	{
 		if (stacks->nb_b < 2)
 			return ;
-		ptr = stacks->b[stacks->nb_b - 1];	
-		stacks->b[stacks->nb_b - 1] = stacks->b[stacks->nb_b - 2];
-		stacks->b[stacks->nb_b - 2] = ptr;
+		ptr = stacks->b[0];	
+		stacks->b[0] = stacks->b[1];
+		stacks->b[1] = ptr;
 	}
 }
 

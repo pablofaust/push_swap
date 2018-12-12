@@ -9,22 +9,22 @@ void			ft_read_stacks(t_stacks stacks)
 	printf("nb_a = %d, nb_b = %d\n", ptr.nb_a, ptr.nb_b);
 	if (ptr.nb_a > 0)
 	{
-		i = ptr.nb_a - 1;
+		i = 0;
 		ft_putstr("STACK a :\n");
-		while (i >= 0)
+		while (i < ptr.nb_a)
 		{
-			ft_putnbr(ptr.a[i--]);
+			ft_putnbr(ptr.a[i++]);
 			ft_putstr("\n");
 		}
 	}
 	ft_putstr("\n");
 	if (ptr.nb_b > 0)
 	{
-		i = ptr.nb_b - 1;
+		i = 0;
 		ft_putstr("STACK b :\n");
-		while (i >= 0)
+		while (i < ptr.nb_b)
 		{
-			ft_putnbr(ptr.b[i--]);
+			ft_putnbr(ptr.b[i++]);
 			ft_putstr("\n");
 		}
 	}
@@ -104,7 +104,6 @@ static int	ft_index_stack(int *a, int big, int *nb)
 	index = *nb;
 	while (j < *nb)
 	{
-		ft_read(a, nb);
 		ft_find_big(tmp, &i, nb_tmp);
 		a[i] = index;
 		tmp[i] = '\0';
@@ -122,7 +121,7 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 	int		big;
 
 	i = 1;
-	j = ac - 2;
+	j = 0;
 	*nb = ac - 1;
 	big = 0;
 	while (av[i])
@@ -135,7 +134,7 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 		}
 		if (a[j] > big)
 			big = a[j];
-		j--;
+		j++;
 		i++;
 	}
 	if (!(ft_index_stack(a, big, nb)))

@@ -1,12 +1,10 @@
 #include "../includes/push_swap.h"
 
-/*void			ft_sort(t_stacks *stacks)
+void			ft_sort(t_stacks *stacks)
 {
-	if (nb_a <= 20)
+	if (stacks->nb_a <= 20)
 		ft_insertion_sort(stacks);
-	else
-		ft_big_sort(stacks);
-}*/
+}
 
 int				main(int ac, char **av)
 {
@@ -20,7 +18,7 @@ int				main(int ac, char **av)
 		return (0);
 	if (!(stacks.b = malloc(sizeof(int) * ac - 1)))
 		return (0);
-//	ft_sort(&stacks);
+	ft_sort(&stacks);
 	ft_read_stacks(stacks);
 	return (1);
 }
