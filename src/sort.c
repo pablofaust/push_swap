@@ -11,13 +11,15 @@ static int	ft_find_index(int *i, int *tab, int n, int find)
 	return (0);
 }
 
-void		ft_insertion_sort(t_stacks *stacks)
+void		ft_left_hand_sort(t_stacks *stacks, int *steps)
 {
-	int		max;
-	int		i;
+	int	max;
+	int	tmp;
+	int	i;
 
-	max = stacks->nb_a;
-	while (max)
+	max = 1;
+	tmp = stacks->nb_a;
+	while (max <= tmp)
 	{
 		i = 0;
 		while (ft_find_index(&i, stacks->a, stacks->nb_a, max))
@@ -26,23 +28,42 @@ void		ft_insertion_sort(t_stacks *stacks)
 			{
 				ft_pb(stacks);
 				i = 0;
+				(*steps)++;
 			}
 			else if (i == stacks->nb_a - 2)
 			{
 				ft_sa(stacks);
 				i = 0;
+				(*steps)++;
 			}
 			else if (i >= (stacks->nb_a) / 2)
 			{
 				ft_ra(stacks);
 				i = 0;
+				(*steps)++;
 			}
 			else if (i < (stacks->nb_a) / 2)
 			{
 				ft_rra(stacks);
 				i = 0;
+				(*steps)++;
 			}
 		}
-		max--;
+		max++;
 	}
+}
+
+void		ft_insertion_sort(t_stacks *stacks)
+{
+	int	steps;
+
+	steps = 0;
+	ft_left_hand_sort(stacks, &steps);
+	printf("%d coups !\n", steps);
+	while (stacks->nb_b)
+	{
+		steps++;
+		ft_pa(stacks);
+	}
+	printf("%d coups !\n", steps);
 }

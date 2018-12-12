@@ -150,9 +150,7 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 		i++;
 	}
 	ft_check_min_int(a, nb, min);
-	ft_read(a, nb);
 	if (!(ft_index_stack(a, nb)))
 		return (0);
-	ft_read(a, nb);
 	return (1);
 }
