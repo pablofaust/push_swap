@@ -45,14 +45,86 @@ int			ft_has_duplicate(int *a, int nb, int j, int len)
 	return (0);
 }
 
+static void	ft_find_big(int *a, int *i, int nb)
+{
+	int		big;
+	int		j;
+
+	j = 0;
+	big = 0;
+	while (j < nb)
+	{
+		if (a[j] > big)
+		{
+			big = a[j];
+			*i = j;
+		}
+		j++;
+	}
+}
+
+void		ft_read(int *a, int *nb)
+{
+	int		j;
+
+	j = 0;
+	while (j < *nb)
+	{
+		printf("a[%d] = %d\n", j, a[j]);
+		j++;
+	}
+	printf("\n\n");
+}
+
+void		ft_tabcpy(int *cpy, int *tab, int *nb)
+{
+	int		j;
+
+	j = 0;
+	while (j < *nb)
+	{
+		cpy[j] = tab[j];
+		j++;
+	}
+}
+
+static int	ft_index_stack(int *a, int big, int *nb)
+{
+	int		*tmp;
+	int		nb_tmp;
+	int		i;
+	int		j;
+	int		index;
+
+	if (!(tmp = malloc(sizeof(int) * *nb)))
+		return (0);
+	ft_tabcpy(tmp, a, nb);
+	nb_tmp = *nb;
+	j = 0;
+	index = *nb;
+	while (j < *nb)
+	{
+		ft_read(a, nb);
+		ft_find_big(tmp, &i, nb_tmp);
+		a[i] = index;
+		tmp[i] = '\0';
+		j++;
+		index--;
+	}
+	free(tmp);
+	return (1);
+}
+
 int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 {
 	int		i;
 	int		j;
+	int		big;
 
 	i = 1;
 	j = ac - 2;
 	*nb = ac - 1;
+	big = 0;
 	while (av[i])
 	{
 		a[j] = ft_atoi(av[i]);
@@ -61,8 +133,12 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 			ft_putstr("Error\n");
 			return (0);
 		}
+		if (a[j] > big)
+			big = a[j];
 		j--;
 		i++;
 	}
+	if (!(ft_index_stack(a, big, nb)))
+		return (0);
 	return (1);
 }
