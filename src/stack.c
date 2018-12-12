@@ -51,7 +51,7 @@ static void	ft_find_big(int *a, int *i, int nb)
 	int		j;
 
 	j = 0;
-	big = 0;
+	big = -2147483648;
 	while (j < nb)
 	{
 		if (a[j] > big)
@@ -88,7 +88,20 @@ void		ft_tabcpy(int *cpy, int *tab, int *nb)
 	}
 }
 
-static int	ft_index_stack(int *a, int big, int *nb)
+static void	ft_check_min_int(int *a, int *nb, int min)
+{
+	int	i;
+
+	i = 0;
+	while (i < *nb)
+	{
+		if (a[i] == -2147483648)
+			a[i] = min - 1;
+		i++;
+	}
+}
+
+static int	ft_index_stack(int *a, int *nb)
 {
 	int		*tmp;
 	int		nb_tmp;
@@ -101,14 +114,14 @@ static int	ft_index_stack(int *a, int big, int *nb)
 	ft_tabcpy(tmp, a, nb);
 	nb_tmp = *nb;
 	j = 0;
-	index = *nb;
+	index = 1;
 	while (j < *nb)
 	{
 		ft_find_big(tmp, &i, nb_tmp);
 		a[i] = index;
-		tmp[i] = '\0';
+		tmp[i] = -2147483648;
 		j++;
-		index--;
+		index++;
 	}
 	free(tmp);
 	return (1);
@@ -118,12 +131,11 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 {
 	int		i;
 	int		j;
-	int		big;
+	int		min;
 
 	i = 1;
 	*nb = ac - 1;
 	j = *nb - 1;
-	big = 0;
 	while (av[i])
 	{
 		a[j] = ft_atoi(av[i]);
@@ -132,12 +144,15 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 			ft_putstr("Error\n");
 			return (0);
 		}
-		if (a[j] > big)
-			big = a[j];
+		if (a[j] < min)
+			min = a[j];
 		j--;
 		i++;
 	}
-	if (!(ft_index_stack(a, big, nb)))
+	ft_check_min_int(a, nb, min);
+	ft_read(a, nb);
+	if (!(ft_index_stack(a, nb)))
 		return (0);
+	ft_read(a, nb);
 	return (1);
 }
