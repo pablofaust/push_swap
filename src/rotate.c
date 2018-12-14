@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-void		ft_ra(t_stacks *stacks)
+void		ft_ra(t_stacks *stacks, t_op **ops)
 {
 	int		i;
 	int		tmp;
@@ -18,9 +18,10 @@ void		ft_ra(t_stacks *stacks)
 		tmp = tmp2;
 		i++;
 	}
+	ft_add_op(ops, "ra");
 }
 
-void		ft_rb(t_stacks *stacks)
+void		ft_rb(t_stacks *stacks, t_op **ops)
 {
 	int		i;
 	int		tmp;
@@ -38,10 +39,11 @@ void		ft_rb(t_stacks *stacks)
 		tmp = tmp2;
 		i++;
 	}
+	ft_add_op(ops, "rb");
 }
 
-void		ft_rr(t_stacks *stacks)
+void		ft_rr(t_stacks *stacks, t_op **ops)
 {
-	ft_ra(stacks);
-	ft_rb(stacks);
+	ft_ra(stacks, ops);
+	ft_rb(stacks, ops);
 }

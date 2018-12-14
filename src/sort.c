@@ -1,69 +1,18 @@
 #include "../includes/push_swap.h"
 
-static int	ft_find_index(int *i, int *tab, int n, int find)
+void		ft_big_sort(t_stacks *stacks, t_op **ops)
 {
-	while (*i < n)
+	int		loops;
+	int		i;
+
+	loops = (stacks->nb_a % 20) ? stacks->nb_a / 20 + 1 : stacks->nb_a / 20;
+	printf("loops = %d\n", loops);
+	i = 1;
+	while (i <= loops)
 	{
-		if (tab[*i] == find)
-			return (1);
-		(*i)++;
+		
+
+
+
 	}
-	return (0);
-}
-
-void		ft_left_hand_sort(t_stacks *stacks, int *steps)
-{
-	int	max;
-	int	tmp;
-	int	i;
-
-	max = 1;
-	tmp = stacks->nb_a;
-	while (max <= tmp)
-	{
-		i = 0;
-		while (ft_find_index(&i, stacks->a, stacks->nb_a, max))
-		{
-			if (i == stacks->nb_a - 1)
-			{
-				ft_pb(stacks);
-				i = 0;
-				(*steps)++;
-			}
-			else if (i == stacks->nb_a - 2)
-			{
-				ft_sa(stacks);
-				i = 0;
-				(*steps)++;
-			}
-			else if (i >= (stacks->nb_a) / 2)
-			{
-				ft_ra(stacks);
-				i = 0;
-				(*steps)++;
-			}
-			else if (i < (stacks->nb_a) / 2)
-			{
-				ft_rra(stacks);
-				i = 0;
-				(*steps)++;
-			}
-		}
-		max++;
-	}
-}
-
-void		ft_insertion_sort(t_stacks *stacks)
-{
-	int	steps;
-
-	steps = 0;
-	ft_left_hand_sort(stacks, &steps);
-	printf("%d coups !\n", steps);
-	while (stacks->nb_b)
-	{
-		steps++;
-		ft_pa(stacks);
-	}
-	printf("%d coups !\n", steps);
 }

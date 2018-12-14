@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-void		ft_pa(t_stacks *stacks)
+void		ft_pa(t_stacks *stacks, t_op **ops)
 {
 	int		*tmp;
 
@@ -10,9 +10,10 @@ void		ft_pa(t_stacks *stacks)
 	stacks->b[stacks->nb_b - 1] = '\0';
 	stacks->nb_a++;
 	stacks->nb_b--;
+	ft_add_op(ops, "pa");
 }
 
-void		ft_pb(t_stacks *stacks)
+void		ft_pb(t_stacks *stacks, t_op **ops)
 {
 	int		*tmp;
 
@@ -22,4 +23,5 @@ void		ft_pb(t_stacks *stacks)
 	stacks->a[stacks->nb_a - 1] = '\0';
 	stacks->nb_b++;
 	stacks->nb_a--;
+	ft_add_op(ops, "pb");
 }

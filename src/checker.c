@@ -24,30 +24,30 @@ int				ft_check_op(char *op)
 		return (1);
 }
 
-void			ft_do_op(t_stacks *stacks, char *op)
+void			ft_do_op(t_stacks *stacks, char *op, t_op **ops)
 {
 	if (ft_strcmp("sa", op) == 0)
-		ft_sa(stacks);
+		ft_sa(stacks, ops);
 	else if (ft_strcmp("sb", op) == 0)
-		ft_sb(stacks);
+		ft_sb(stacks, ops);
 	else if (ft_strcmp("ss", op) == 0)
-		ft_ss(stacks);
+		ft_ss(stacks, ops);
 	else if (ft_strcmp("pa", op) == 0)
-		ft_pa(stacks);
+		ft_pa(stacks, ops);
 	else if (ft_strcmp("pb", op) == 0)
-		ft_pb(stacks);
+		ft_pb(stacks, ops);
 	else if (ft_strcmp("ra", op) == 0)
-		ft_ra(stacks);
+		ft_ra(stacks, ops);
 	else if (ft_strcmp("rb", op) == 0)
-		ft_rb(stacks);
+		ft_rb(stacks, ops);
 	else if (ft_strcmp("rr", op) == 0)
-		ft_rr(stacks);
+		ft_rr(stacks, ops);
 	else if (ft_strcmp("rra", op) == 0)
-		ft_rra(stacks);
+		ft_rra(stacks, ops);
 	else if (ft_strcmp("rrb", op) == 0)
-		ft_rrb(stacks);
+		ft_rrb(stacks, ops);
 	else if (ft_strcmp("rrr", op) == 0)
-		ft_rrr(stacks);
+		ft_rrr(stacks, ops);
 }
 
 void			ft_stack_is_sort(t_stacks stacks)
@@ -81,6 +81,7 @@ int				main(int ac, char **av)
 {
 	t_stacks	stacks;
 	char		*op;
+	t_op		*ops;
 
 	if (ac < 2)
 		return (0);
@@ -93,7 +94,7 @@ int				main(int ac, char **av)
 	{
 		if (!(ft_check_op(op)))
 			return (0);
-		ft_do_op(&stacks, op);
+		ft_do_op(&stacks, op, &ops);
 		if (op[0] == '\0')
 			break ;
 		ft_read_stacks(stacks);
