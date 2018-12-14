@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 static int	ft_find_index(int *i, int *tab, int n, int find)
 {

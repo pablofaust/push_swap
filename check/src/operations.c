@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 t_op		*ft_create_op(char *op)
 {

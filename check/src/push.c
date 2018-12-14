@@ -1,9 +1,7 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void		ft_pa(t_stacks *stacks, t_op **ops)
 {
-	int		*tmp;
-
 	if (stacks->nb_b < 1)
 		return ;
 	stacks->a[stacks->nb_a] = stacks->b[stacks->nb_b - 1];
@@ -15,8 +13,6 @@ void		ft_pa(t_stacks *stacks, t_op **ops)
 
 void		ft_pb(t_stacks *stacks, t_op **ops)
 {
-	int		*tmp;
-
 	if (stacks->nb_a < 1)
 		return ;
 	stacks->b[stacks->nb_b] = stacks->a[stacks->nb_a - 1];

@@ -6,7 +6,7 @@
 #    By: pfaust <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 15:46:59 by pfaust            #+#    #+#              #
-#    Updated: 2018/12/04 15:17:17 by pfaust           ###   ########.fr        #
+#    Updated: 2018/12/14 14:27:49 by pfaust           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,19 +39,14 @@ OBJS = $(addprefix objs/, $(addsuffix .o, \
 all : $(NAME)
 
 $(NAME): objs $(OBJS)
-	@printf  "\033[92m\033[1:32mCompiling -------------> \033[91m$(NAME)\033[0m:\033[0m%-16s\033[32m[✔]\033[0m\n"
 	@ar rcs $(NAME) $(OBJS)
 
 objs/%.o: src/%.c $(HEADER)
-	@printf  "\033[1:92m Bin Compiling $(NAME)\033[0m %-31s\033[32m[$<]\033[0m\n" ""
 	@gcc -o $@ -c $< $(FLAGS) $(INCLUDES)
-	@printf "\033[A\033[2K"
 objs:
 	@mkdir -p objs/
 clean :
 	@rm -rf objs/
-	@printf  "\033[1:32mCleaning object files -> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
 fclean : clean
 	@rm -rf $(NAME)
-	@printf  "\033[1:32mCleaning binary -------> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
 re : fclean all

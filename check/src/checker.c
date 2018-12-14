@@ -1,5 +1,5 @@
-#include "../includes/push_swap.h"
-#include "../includes/get_next_line.h"
+#include "push_swap.h"
+#include "get_next_line.h"
 
 int				ft_check_op(char *op)
 {
@@ -53,7 +53,6 @@ void			ft_do_op(t_stacks *stacks, char *op, t_op **ops)
 void			ft_stack_is_sort(t_stacks stacks)
 {
 	int		i;
-	int		err;
 
 	if (stacks.nb_b != 0)
 	{

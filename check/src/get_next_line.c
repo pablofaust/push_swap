@@ -6,12 +6,12 @@
 /*   By: pfaust <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 14:23:24 by pfaust            #+#    #+#             */
-/*   Updated: 2018/12/11 14:46:35 by pfaust           ###   ########.fr       */
+/*   Updated: 2018/12/14 14:13:16 by pfaust           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
-#include "../includes/push_swap.h"
+#include "get_next_line.h"
+#include "push_swap.h"
 
 static t_stock	*ft_newstock(int fd)
 {

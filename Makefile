@@ -1,83 +1,94 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: pfaust <marvin@42.fr>                      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/09/20 11:10:04 by pfaust            #+#    #+#              #
-#    Updated: 2018/12/10 09:50:53 by pfaust           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+CC 				= gcc
 
-NAME 		= ./push_swap
+CFLAGS			= -Wall -Wextra -Werror
 
-FLAGS 		= -g -Wall -Wextra -Werror
+EXEC1			= checker
 
-LIBS 		= ./libs/libft/libft.a
+EXEC2			= push_swap
 
-INCLUDES 	= -I includes/ \
-		  -I ./libs/libft/includes/
-HEADER		= ./includes/push_swap.h
-SRC 		= main
+LIB_HEADER_PATH	= libs/libft/includes/
 
-LIB_SRC = ft_atoi ft_bzero ft_isalnum ft_isalpha ft_isascii \
-	ft_isdigit ft_isprint ft_itoa ft_lstadd ft_lstdel \
-	ft_lstdelone ft_lstiter ft_lstmap ft_lstnew ft_memalloc \
-	ft_memccpy ft_memchr ft_memcmp ft_memcpy ft_memdel \
-	ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl \
-	ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd \
-	ft_strcat ft_strchr ft_strclr ft_strcmp ft_strcpy \
-	ft_strdel ft_strdup ft_strequ ft_striter ft_striteri \
-	ft_strjoin ft_strlcat ft_strlen ft_strmap ft_strmapi \
-	ft_strncat ft_strncmp ft_strncpy ft_strnequ ft_strnew \
-	ft_strnstr ft_strrchr ft_strsplit ft_strstr ft_strsub \
-	ft_strtrim ft_tolower ft_toupper ft_pow ft_wordlen \
-	ft_nbwords ft_itoa_base_ll ft_itoa_base_ull ft_itoa_base \
-	ft_never_negative ft_itoa_ll ft_itoa_base_uint \
-	ft_itoa_db ft_nb_entiers ft_print_bits ft_binary_long\
-	ft_truncate ft_cpyalpha ft_putbinstr ft_dir_strncpy \
-	ft_int_pow
+SRC1_PATH		= check/src/
+HEADER1_PATH	= check/includes/
+OBJ1_PATH		= check/obj/
 
-OBJS = $(addprefix objs/, $(addsuffix .o, \
-	   $(SRC) \
-	 ))
+SRC2_PATH		= swap/src/
+HEADER2_PATH	= swap/includes/
+OBJ2_PATH		= swap/obj/
 
-LIB_OBJS = $(addprefix libs/libft/objs/, $(addsuffix .o, \
-	   $(LIB_SRC) \
-	 ))
+SRC1_NAME		= checker.c \
+				  get_next_line.c \
+				  operations.c \
+				  push.c \
+				  reverse.c \
+				  rotate.c \
+				  stack.c \
+				  swap.c
 
-all: $(NAME)
+SRC2_NAME		= insertion_sort.c \
+				  operations.c \
+				  push.c \
+				  push_swap.c \
+				  reverse.c \
+				  rotate.c \
+				  sort.c \
+				  stack.c \
+				  swap.c
 
-$(NAME): objs $(OBJS)
-	@printf  "\033[92m\033[1:32mCompiling -------------> \033[91m$(NAME)\033[0m:\033[0m%-16s\033[32m[✔]\033[0m\n"
-	@ar rcs $(NAME) $(OBJS) $(LIB_OBJS)
-	ranlib $(NAME)
+OBJ1_NAME		= $(SRC1_NAME:.c=.o)
 
-objs/%.o: src/%.c $(HEADER)
-	@printf  "\033[1:92m Bin Compiling $(NAME)\033[0m %-31s\033[32m[$<]\033[0m\n" ""
-	@gcc -o $@ -c $< $(FLAGS) $(INCLUDES) 
-	@printf "\033[A\033[2K"
+OBJ2_NAME		= $(SRC2_NAME:.c=.o)
 
-objs:
-	@mkdir -p objs/
+LIB_HEADER 		= $(addprefix -I, $(LIB_HEADER_PATH))
+
+SRC1			= $(addprefix $(SRC1_PATH), $(SRC1_NAME))
+OBJ1			= $(addprefix $(OBJ1_PATH), $(OBJ1_NAME)) 
+HEADER1			= $(addprefix -I, $(HEADER1_PATH))
+
+SRC2			= $(addprefix $(SRC2_PATH),$(SRC2_NAME))
+OBJ2			= $(addprefix $(OBJ2_PATH), $(OBJ2_NAME)) 
+HEADER2			= $(addprefix -I,$(HEADER2_PATH))
+
+LIB_PATH		= libs/libft/
+LIB_NAME		= libft.a
+LIB		 		= $(addprefix $(LIB_PATH), $(LIB_NAME))
+
+RED 			= \033[31m
+GREEN			= \033[32m
+END 			= \033[0m
+
+all: $(LIB_NAME) $(EXEC1) $(EXEC2)
+
+$(LIB_NAME):
+	@echo "$(RED)COMPILING LIBRARY...$(END)"
+	@make -C $(LIB_PATH)
+	@echo "$(GREEN)LIBRARY READY$(END)"
+
+$(EXEC1): $(OBJ1)
+	@$(CC) $(CFLAGS) -o $(EXEC1) $(OBJ1) $(LIB)
+	@echo "$(GREEN)CHECKER READY$(END)"
+
+$(EXEC2): $(OBJ2)
+	@$(CC) $(CFLAGS) -o $(EXEC2) $(OBJ2) $(LIB)
+	@echo "$(GREEN)PUSH_SWAP READY$(END)"
+
+
+$(OBJ1_PATH)%.o: $(SRC1_PATH)%.c
+	@mkdir -p $(OBJ1_PATH)	
+	@$(CC) -c $(CFLAGS) $(HEADER1) $(LIB_HEADER) -o $@ -c $<
+
+$(OBJ2_PATH)%.o: $(SRC2_PATH)%.c
+	@mkdir -p $(OBJ2_PATH)	
+	@$(CC) -c $(CFLAGS) $(HEADER2) $(LIB_HEADER) -o $@ -c $<
 
 clean:
-	@rm -rf objs/
-	@printf  "\033[1:32mCleaning object files -> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
-	@rm -rf $(LIB_SRC)
-	@printf  "\033[1:32mCleaning object files -> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
-	@make -C ./libs/libft clean
-	@printf  "\033[1:32mCleaning object files -> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
+	@make clean -C $(LIB_PATH)
+	@rm -rf $(OBJ1_PATH) $(OBJ2_PATH)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@rm -rf ./libs/libft/libft.a
-	@printf  "\033[1:32mCleaning binary -------> \033[91m$(NAME)\033[0m\033[1:32m:\033[0m%-16s\033[32m[✔]\033[0m\n"
+	@make fclean -C $(LIB_PATH)
+	@rm -rf $(EXEC1) $(EXEC2)
 
-re:
-	@$(MAKE) fclean
-	@make -C ./libs/libft
-	@$(MAKE)
+re: fclean all
 
-.PHONY: 	all clean fclean re
+.PHONY: all clean fclean re

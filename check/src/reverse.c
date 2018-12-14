@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void		ft_rra(t_stacks *stacks, t_op **ops)
 {

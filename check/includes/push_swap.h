@@ -1,6 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "../libs/libft/includes/libft.h"
+# include "libft.h"
 # include "stdio.h"
 
 typedef struct		s_stacks
