@@ -135,7 +135,7 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 
 	i = 1;
 	*nb = ac - 1;
-	j = *nb - 1;
+	j = 0;
 	while (av[i])
 	{
 		a[j] = ft_atoi(av[i]);
@@ -146,7 +146,7 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 		}
 		if (a[j] < min)
 			min = a[j];
-		j--;
+		j++;
 		i++;
 	}
 	ft_check_min_int(a, nb, min);

@@ -35,4 +35,5 @@ void			ft_big_sort(t_stacks *stacks, t_op **ops);
 void			ft_add_op(t_op **ops, char *op);
 void			ft_put_ops(t_op *ops);
 void			ft_read(int *a, int *nb);
+void			ft_small_sort(t_stacks *stacks, t_op **ops);
 #endif
