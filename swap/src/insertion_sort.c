@@ -73,10 +73,15 @@ int		ft_is_sort(int *tab, int nb)
 	int	i;
 
 	i = 0;
-	while (i < nb)
+	while (i + 1 < nb)
 	{
-		if (tab[i] > tab[i + 1])
-			return (0);
+		if (tab[i + 1] > tab[i])
+		{
+			if (i == 7 && tab[i] == 1 && tab[i + 1] == nb)
+				return (-1);
+			else
+				return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -85,27 +90,30 @@ int		ft_is_sort(int *tab, int nb)
 void		ft_small_sort(t_stacks *stacks, t_op **ops)
 {
 	int 	steps;
+	int	ret;
 
-	(void)ops;
 	steps = 0;
-	while (!(ft_is_sort(stacks->a, stacks->nb_a)))
+	ret = 0;
+	while (!ret)
 	{
 		ft_read(stacks->a, &stacks->nb_a);
-		if (stacks->a[stacks->nb_a - 1] > stacks->a[0])
+		if (stacks->a[0] > stacks->a[stacks->nb_a - 1])
 		{
-			printf("rra\n");
 			ft_rra(stacks, ops);
+			steps++;
 		}
-		else if (stacks->a[0] > stacks->a[1])
+		else if (stacks->a[stacks->nb_a - 1] > stacks->a[stacks->nb_a - 2] \
+		&& ret != -1) 
 		{
-			printf("sa\n");
 			ft_sa(stacks, ops);
+			steps++;
 		}
 		else
 		{
-			printf("ra\n");
 			ft_ra(stacks, ops);
+			steps++;
 		}
+		ret = ft_is_sort(stacks->a, stacks->nb_a);
 	}
-	ft_putstr("sorted\n");
+	printf("%d coups !\n", steps);
 }

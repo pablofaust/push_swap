@@ -67,11 +67,11 @@ void		ft_read(int *a, int *nb)
 {
 	int		j;
 
-	j = 0;
-	while (j < *nb)
+	j = *nb - 1;
+	while (j >= 0)
 	{
 		printf("a[%d] = %d\n", j, a[j]);
-		j++;
+		j--;
 	}
 	printf("\n\n");
 }
@@ -114,14 +114,14 @@ static int	ft_index_stack(int *a, int *nb)
 	ft_tabcpy(tmp, a, nb);
 	nb_tmp = *nb;
 	j = 0;
-	index = 1;
+	index = *nb;
 	while (j < *nb)
 	{
 		ft_find_big(tmp, &i, nb_tmp);
 		a[i] = index;
 		tmp[i] = -2147483648;
 		j++;
-		index++;
+		index--;
 	}
 	free(tmp);
 	return (1);
@@ -135,7 +135,7 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 
 	i = 1;
 	*nb = ac - 1;
-	j = 0;
+	j = *nb - 1;
 	while (av[i])
 	{
 		a[j] = ft_atoi(av[i]);
@@ -146,7 +146,7 @@ int			ft_create_av_stack(int ac, int *a, char **av, int *nb)
 		}
 		if (a[j] < min)
 			min = a[j];
-		j++;
+		j--;
 		i++;
 	}
 	ft_check_min_int(a, nb, min);
