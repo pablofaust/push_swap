@@ -10,26 +10,19 @@ void			ft_read_stacks(t_stacks stacks)
 	if (ptr.nb_a > 0)
 	{
 		i = ptr.nb_a - 1;
-		ft_putstr("STACK a :\n");
+		printf("STACK a :\n");
 		while (i >= 0)
-		{
-			ft_putnbr(ptr.a[i--]);
-			ft_putstr("\n");
-		}
+			printf("%d\n", ptr.a[i--]);
 	}
-	ft_putstr("\n");
+	printf("\n");
 	if (ptr.nb_b > 0)
 	{
 		i = ptr.nb_b - 1;
-		ft_putstr("STACK b :\n");
+		printf("STACK b :\n");
 		while (i >= 0)
-		{
-			ft_putnbr(ptr.b[i--]);
-			ft_putstr("\n");
-		}
+			printf("%d\n", ptr.b[i--]);
 	}
-	ft_putstr("\n");
-	ft_putstr("\n");
+	printf("\n\n");
 }
 
 int			ft_has_duplicate(int *a, int nb, int j, int len)

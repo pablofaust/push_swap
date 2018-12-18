@@ -1,73 +1,5 @@
 #include "push_swap.h"
 
-static int	ft_find_index(int *i, int *tab, int n, int find)
-{
-	while (*i < n)
-	{
-		if (tab[*i] == find)
-			return (1);
-		(*i)++;
-	}
-	return (0);
-}
-
-void		ft_left_hand_sort(t_stacks *stacks, int *steps, t_op **ops)
-{
-	int	max;
-	int	tmp;
-	int	i;
-
-	max = 1;
-	tmp = stacks->nb_a;
-	while (max <= tmp)
-	{
-		i = 0;
-		while (ft_find_index(&i, stacks->a, stacks->nb_a, max))
-		{
-			if (i == stacks->nb_a - 1)
-			{
-				ft_pb(stacks, ops);
-				i = 0;
-				(*steps)++;
-			}
-			else if (i == stacks->nb_a - 2)
-			{
-				ft_sa(stacks, ops);
-				i = 0;
-				(*steps)++;
-			}
-			else if (i >= (stacks->nb_a) / 2)
-			{
-				ft_ra(stacks, ops);
-				i = 0;
-				(*steps)++;
-			}
-			else if (i < (stacks->nb_a) / 2)
-			{
-				ft_rra(stacks, ops);
-				i = 0;
-				(*steps)++;
-			}
-		}
-		max++;
-	}
-}
-
-void		ft_insertion_sort(t_stacks *stacks, t_op **ops)
-{
-	int	steps;
-
-	steps = 0;
-	ft_left_hand_sort(stacks, &steps, ops);
-	printf("%d coups !\n", steps);
-	while (stacks->nb_b)
-	{
-		steps++;
-		ft_pa(stacks, ops);
-	}
-	printf("%d coups !\n", steps);
-}
-
 int		ft_is_sort(int *tab, int nb)
 {
 	int	i;
@@ -76,44 +8,149 @@ int		ft_is_sort(int *tab, int nb)
 	while (i + 1 < nb)
 	{
 		if (tab[i + 1] > tab[i])
-		{
-			if (i == 7 && tab[i] == 1 && tab[i + 1] == nb)
-				return (-1);
-			else
-				return (0);
-		}
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void		ft_small_sort(t_stacks *stacks, t_op **ops)
+int			ft_is_inferior(t_stacks *stacks)
 {
-	int 	steps;
-	int	ret;
+	int		i;
 
-	steps = 0;
-	ret = 0;
-	while (!ret)
+	if (stacks->b[stacks->nb_b - 1] > stacks->a[stacks->nb_a - 1])
+		return (0);
+	i = 0;
+	while (i < stacks->nb_b)
 	{
-		ft_read(stacks->a, &stacks->nb_a);
-		if (stacks->a[0] > stacks->a[stacks->nb_a - 1])
+		if (stacks->b[i] < stacks->a[stacks->nb_a - 1] && stacks->b[i] > stacks->b[stacks->nb_b - 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int			ft_no_inferior(t_stacks *stacks)
+{
+	int		i;
+
+	i = 0;
+	while (i < stacks->nb_b)
+	{
+		if (stacks->b[i] < stacks->a[stacks->nb_a - 1])
+			return (0);
+		i++;
+	}
+	i = 1;
+	while (i < stacks->nb_b)
+	{
+		if (stacks->b[i] < stacks->b[0])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int			ft_inferior_index(t_stacks *stacks)
+{
+	int		tmp;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	tmp = 0;
+	while (i < stacks->nb_b)
+	{
+		if (stacks->b[i] < stacks->a[stacks->nb_a - 1] && stacks->b[i] > tmp)
+		{ 
+			tmp = stacks->b[i];
+			printf("tmp = %d\n", tmp);
+			j = i;
+		}
+		i++;
+	}
+	return (j);
+}
+
+int			ft_get_rotation(t_stacks *stacks)
+{
+	int		index;
+
+	index = ft_inferior_index(stacks);
+	printf("index = %d\n", index);
+	if (index < stacks->nb_b / 2)
+		return (-index - 1);
+	else
+		return (stacks->nb_b - index - 1);
+}
+
+void		ft_insertion_sort(t_stacks *stacks, t_op **ops)
+{
+	int		r;
+	int		steps;
+
+	r = 0;
+	steps = 0;
+	while (stacks->nb_b < 2)
+	{
+		printf("PB\n");
+		ft_pb(stacks, ops);
+		ft_read_stacks(*stacks);
+		steps++;
+	}
+	if (stacks->b[1] < stacks->b[0])
+	{
+		printf("SB\n");
+		ft_sb(stacks, ops);
+		ft_read_stacks(*stacks);
+		steps++;
+	}
+	while (stacks->nb_a > 1)
+	{
+		ft_read_stacks(*stacks);
+		if (stacks->a[stacks->nb_a - 1] != stacks->nb_a && \
+				stacks->a[stacks->nb_a - 1] > stacks->a[stacks->nb_a - 2] && \
+				stacks->b[stacks->nb_b - 1] < stacks->b[stacks->nb_b - 2])
 		{
-			ft_rra(stacks, ops);
+			printf("SS\n");
+			ft_ss(stacks, ops);
+			ft_read_stacks(*stacks);
 			steps++;
 		}
-		else if (stacks->a[stacks->nb_a - 1] > stacks->a[stacks->nb_a - 2] \
-		&& ret != -1) 
+		else if (stacks->b[stacks->nb_b - 1] < stacks->b[stacks->nb_b - 2] && \
+				stacks->b[stacks->nb_b - 1] > stacks->b[0])
 		{
-			ft_sa(stacks, ops);
+			printf("SB\n");
+			ft_sb(stacks, ops);
+			ft_read_stacks(*stacks);
 			steps++;
+		}
+		if (!(ft_is_inferior(stacks) || ft_no_inferior(stacks)))
+		{
+			r = ft_get_rotation(stacks);
+			printf("r = %d\n", r);
+			while (r < 0)
+			{
+				ft_rrb(stacks, ops);
+				ft_read_stacks(*stacks);
+				steps++;
+				r++;
+			}
+			while (r > 0)
+			{
+				ft_rb(stacks, ops);
+				ft_read_stacks(*stacks);
+				steps++;
+				r--;
+			}
 		}
 		else
 		{
-			ft_ra(stacks, ops);
+			printf("PB\n");
 			steps++;
+			ft_pb(stacks, ops);
 		}
-		ret = ft_is_sort(stacks->a, stacks->nb_a);
 	}
 	printf("%d coups !\n", steps);
 }
