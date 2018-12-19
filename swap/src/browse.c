@@ -51,7 +51,6 @@ int			ft_inferior_index(t_stacks *stacks)
 		if (stacks->b[i] < stacks->a[stacks->nb_a - 1] && stacks->b[i] > tmp)
 		{ 
 			tmp = stacks->b[i];
-			printf("tmp = %d\n", tmp);
 			j = i;
 		}
 		i++;

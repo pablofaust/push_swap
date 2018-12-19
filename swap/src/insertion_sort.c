@@ -22,26 +22,39 @@ void		ft_pushback(t_stacks *stacks, t_op **ops, int *steps)
 	r = ft_get_rotation(stacks, '>', stacks->b, stacks->nb_b);
 	while (r < 0)
 	{
-		printf("RRB\n");
 		ft_rrb(stacks, ops);
-		ft_read_stacks(*stacks);
+		//ft_read_stacks(*stacks);
 		(*steps)++;
 		r++;
 	}
 	while (r > 0)
 	{
-		printf("RB\n");
 		ft_rb(stacks, ops);
-		ft_read_stacks(*stacks);
+		//ft_read_stacks(*stacks);
 		(*steps)++;
 		r--;
 	}
 	while (stacks->nb_b)
 	{
-		printf("PA\n");
 		ft_pa(stacks, ops);
-		ft_read_stacks(*stacks);
+		//ft_read_stacks(*stacks);
 		(*steps)++;
+	}
+}
+
+void		ft_first_pushs(t_stacks *stacks, t_op **ops, int *steps)
+{
+	while (stacks->a[stacks->nb_a - 1] == stacks->max || stacks->a[stacks->nb_a - 2] == stacks->max)
+	{
+		ft_ra(stacks, ops);
+		//ft_read_stacks(*stacks);
+		(*steps)++;
+	}
+	while (stacks->nb_b < 2)
+	{
+		ft_pb(stacks, ops);
+		//ft_read_stacks(*stacks);
+		steps++;
 	}
 }
 
@@ -53,73 +66,52 @@ void		ft_insertion_sort(t_stacks *stacks, t_op **ops)
 	r = 0;
 	steps = 0;
 	ft_read_stacks(*stacks);
-	while (stacks->nb_b < 2)
-	{
-		printf("PB\n");
-		ft_pb(stacks, ops);
-		ft_read_stacks(*stacks);
-		steps++;
-	}
-	if (stacks->b[1] < stacks->b[0])
-	{
-		printf("SB\n");
-		ft_sb(stacks, ops);
-		ft_read_stacks(*stacks);
-		steps++;
-	}
+	ft_first_pushs(stacks, ops, &steps);
 	while (stacks->nb_a > 1)
 	{
-		if (stacks->a[stacks->nb_a - 1] != stacks->nb_a && \
+		/*if (stacks->a[stacks->nb_a - 1] != stacks->nb_a && \
 				stacks->a[stacks->nb_a - 1] > stacks->a[stacks->nb_a - 2] && \
 				stacks->b[stacks->nb_b - 1] < stacks->b[stacks->nb_b - 2])
 		{
-			printf("SS\n");
 			ft_ss(stacks, ops);
 			ft_read_stacks(*stacks);
 			steps++;
-		}
+		}*/
 		if ((!(ft_is_inferior(stacks) || ft_no_inferior(stacks))) && stacks->a[stacks->nb_a - 1] != stacks->max)
 		{
 			r = ft_get_rotation(stacks, '<', stacks->a, stacks->nb_a);
-			printf("r = %d\n", r);
 			while (r < 0)
 			{
-				printf("RRB\n");
 				ft_rrb(stacks, ops);
-				ft_read_stacks(*stacks);
+				//ft_read_stacks(*stacks);
 				steps++;
 				r++;
 			}
 			while (r > 0)
 			{
-				printf("RB\n");
 				ft_rb(stacks, ops);
-				ft_read_stacks(*stacks);
+				//ft_read_stacks(*stacks);
 				steps++;
 				r--;
 			}
 		}
-		if ((ft_is_inferior(stacks) || ft_no_inferior(stacks)) && stacks->a[stacks->nb_a] - 1 != stacks->max)
+		if ((ft_is_inferior(stacks) || ft_no_inferior(stacks)) && stacks->a[stacks->nb_a - 1] != stacks->max)
 		{
-			printf("PB\n");
 			steps++;
 			ft_pb(stacks, ops);
-			ft_read_stacks(*stacks);
+			//ft_read_stacks(*stacks);
 		}		
 		if (stacks->a[stacks->nb_a - 1] == stacks->max && stacks->nb_a > 1)
 		{
-			printf("a = %d\n", stacks->a[stacks->nb_a - 1]);
-			printf("SA\n");
 			ft_sa(stacks, ops);
-			ft_read_stacks(*stacks);
+			//ft_read_stacks(*stacks);
 			steps++;
 		}
 		if (stacks->b[stacks->nb_b - 1] < stacks->b[stacks->nb_b - 2] && \
 				stacks->b[stacks->nb_b - 1] > stacks->b[0])
 		{
-			printf("SB\n");
 			ft_sb(stacks, ops);
-			ft_read_stacks(*stacks);
+			//ft_read_stacks(*stacks);
 			steps++;
 		}
 	}
