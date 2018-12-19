@@ -6,7 +6,7 @@
 /*   By: pfaust <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 16:30:07 by pfaust            #+#    #+#             */
-/*   Updated: 2018/12/03 14:55:15 by pfaust           ###   ########.fr       */
+/*   Updated: 2018/12/19 10:33:15 by pfaust           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,6 @@ int					ft_nb_entiers(double n);
 void				ft_print_bits(unsigned char octet);
 void				ft_binary_long(long n);
 char				*ft_truncate(char *str, int n, char c);
-char	*ft_cpyalpha(char *str);
+char				*ft_cpyalpha(char *str);
+int					ft_tab_is_sort(int *tab, int nb);
 #endif

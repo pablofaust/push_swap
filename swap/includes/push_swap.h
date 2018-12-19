@@ -9,6 +9,7 @@ typedef struct		s_stacks
 	int				*b;
 	int				nb_a;
 	int				nb_b;
+	int				max;
 }					t_stacks;
 
 typedef struct		s_op
@@ -36,4 +37,9 @@ void			ft_add_op(t_op **ops, char *op);
 void			ft_put_ops(t_op *ops);
 void			ft_read(int *a, int *nb);
 void			ft_small_sort(t_stacks *stacks, t_op **ops);
+int				ft_is_inferior(t_stacks *stacks);
+int				ft_no_inferior(t_stacks *stacks);
+int				ft_inferior_index(t_stacks *stacks);
+int				ft_inferior_index(t_stacks *stacks);
+int				ft_superior_index(t_stacks *stacks, int *stack, int nb);
 #endif

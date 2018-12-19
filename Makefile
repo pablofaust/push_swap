@@ -25,7 +25,8 @@ SRC1_NAME		= checker.c \
 				  stack.c \
 				  swap.c
 
-SRC2_NAME		= insertion_sort.c \
+SRC2_NAME		= browse.c \
+				  insertion_sort.c \
 				  operations.c \
 				  push.c \
 				  push_swap.c \
