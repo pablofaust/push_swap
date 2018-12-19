@@ -2,10 +2,8 @@
 
 void			ft_sort(t_stacks *stacks, t_op **ops)
 {
-	if (stacks->nb_a <= 20 && !ft_tab_is_sort(stacks->a, stacks->nb_a))
+	if (!(ft_tab_is_sort(stacks->a, stacks->nb_a)))
 		ft_insertion_sort(stacks, ops);
-	else if (stacks->nb_a > 20)
-		ft_big_sort(stacks, ops);
 }
 
 int				main(int ac, char **av)

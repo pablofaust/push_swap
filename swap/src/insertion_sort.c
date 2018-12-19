@@ -52,6 +52,7 @@ void		ft_insertion_sort(t_stacks *stacks, t_op **ops)
 
 	r = 0;
 	steps = 0;
+	ft_read_stacks(*stacks);
 	while (stacks->nb_b < 2)
 	{
 		printf("PB\n");
@@ -77,23 +78,7 @@ void		ft_insertion_sort(t_stacks *stacks, t_op **ops)
 			ft_read_stacks(*stacks);
 			steps++;
 		}
-		if (stacks->a[stacks->nb_a - 1] == stacks->max)
-		{
-			printf("a = %d\n", stacks->a[stacks->nb_a - 1]);
-			printf("SA\n");
-			ft_sa(stacks, ops);
-			ft_read_stacks(*stacks);
-			steps++;
-		}
-		else if (stacks->b[stacks->nb_b - 1] < stacks->b[stacks->nb_b - 2] && \
-				stacks->b[stacks->nb_b - 1] > stacks->b[0])
-		{
-			printf("SB\n");
-			ft_sb(stacks, ops);
-			ft_read_stacks(*stacks);
-			steps++;
-		}
-		if (!(ft_is_inferior(stacks) || ft_no_inferior(stacks)))
+		if ((!(ft_is_inferior(stacks) || ft_no_inferior(stacks))) && stacks->a[stacks->nb_a - 1] != stacks->max)
 		{
 			r = ft_get_rotation(stacks, '<', stacks->a, stacks->nb_a);
 			printf("r = %d\n", r);
@@ -114,12 +99,28 @@ void		ft_insertion_sort(t_stacks *stacks, t_op **ops)
 				r--;
 			}
 		}
-		else
+		if ((ft_is_inferior(stacks) || ft_no_inferior(stacks)) && stacks->a[stacks->nb_a] - 1 != stacks->max)
 		{
 			printf("PB\n");
 			steps++;
 			ft_pb(stacks, ops);
 			ft_read_stacks(*stacks);
+		}		
+		if (stacks->a[stacks->nb_a - 1] == stacks->max && stacks->nb_a > 1)
+		{
+			printf("a = %d\n", stacks->a[stacks->nb_a - 1]);
+			printf("SA\n");
+			ft_sa(stacks, ops);
+			ft_read_stacks(*stacks);
+			steps++;
+		}
+		if (stacks->b[stacks->nb_b - 1] < stacks->b[stacks->nb_b - 2] && \
+				stacks->b[stacks->nb_b - 1] > stacks->b[0])
+		{
+			printf("SB\n");
+			ft_sb(stacks, ops);
+			ft_read_stacks(*stacks);
+			steps++;
 		}
 	}
 	ft_pushback(stacks, ops, &steps);

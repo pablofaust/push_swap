@@ -1,0 +1,558 @@
+nb_a = 11, nb_b = 0
+STACK a :
+1
+4
+11
+3
+2
+5
+9
+8
+7
+10
+6
+
+
+
+PB
+nb_a = 10, nb_b = 1
+STACK a :
+4
+11
+3
+2
+5
+9
+8
+7
+10
+6
+
+STACK b :
+1
+
+
+PB
+nb_a = 9, nb_b = 2
+STACK a :
+11
+3
+2
+5
+9
+8
+7
+10
+6
+
+STACK b :
+4
+1
+
+
+PB
+nb_a = 8, nb_b = 3
+STACK a :
+3
+2
+5
+9
+8
+7
+10
+6
+
+STACK b :
+11
+4
+1
+
+
+tmp = 1
+r = -1
+RRB
+nb_a = 8, nb_b = 3
+STACK a :
+3
+2
+5
+9
+8
+7
+10
+6
+
+STACK b :
+1
+11
+4
+
+
+PB
+nb_a = 7, nb_b = 4
+STACK a :
+2
+5
+9
+8
+7
+10
+6
+
+STACK b :
+3
+1
+11
+4
+
+
+tmp = 1
+r = 1
+RB
+nb_a = 7, nb_b = 4
+STACK a :
+2
+5
+9
+8
+7
+10
+6
+
+STACK b :
+1
+11
+4
+3
+
+
+PB
+nb_a = 6, nb_b = 5
+STACK a :
+5
+9
+8
+7
+10
+6
+
+STACK b :
+2
+1
+11
+4
+3
+
+
+tmp = 3
+tmp = 4
+r = -2
+RRB
+nb_a = 6, nb_b = 5
+STACK a :
+5
+9
+8
+7
+10
+6
+
+STACK b :
+3
+2
+1
+11
+4
+
+
+RRB
+nb_a = 6, nb_b = 5
+STACK a :
+5
+9
+8
+7
+10
+6
+
+STACK b :
+4
+3
+2
+1
+11
+
+
+PB
+nb_a = 5, nb_b = 6
+STACK a :
+9
+8
+7
+10
+6
+
+STACK b :
+5
+4
+3
+2
+1
+11
+
+
+PB
+nb_a = 4, nb_b = 7
+STACK a :
+8
+7
+10
+6
+
+STACK b :
+9
+5
+4
+3
+2
+1
+11
+
+
+tmp = 1
+tmp = 2
+tmp = 3
+tmp = 4
+tmp = 5
+r = 1
+RB
+nb_a = 4, nb_b = 7
+STACK a :
+8
+7
+10
+6
+
+STACK b :
+5
+4
+3
+2
+1
+11
+9
+
+
+PB
+nb_a = 3, nb_b = 8
+STACK a :
+7
+10
+6
+
+STACK b :
+8
+5
+4
+3
+2
+1
+11
+9
+
+
+tmp = 1
+tmp = 2
+tmp = 3
+tmp = 4
+tmp = 5
+r = 1
+RB
+nb_a = 3, nb_b = 8
+STACK a :
+7
+10
+6
+
+STACK b :
+5
+4
+3
+2
+1
+11
+9
+8
+
+
+PB
+nb_a = 2, nb_b = 9
+STACK a :
+10
+6
+
+STACK b :
+7
+5
+4
+3
+2
+1
+11
+9
+8
+
+
+tmp = 8
+tmp = 9
+r = -2
+RRB
+nb_a = 2, nb_b = 9
+STACK a :
+10
+6
+
+STACK b :
+8
+7
+5
+4
+3
+2
+1
+11
+9
+
+
+RRB
+nb_a = 2, nb_b = 9
+STACK a :
+10
+6
+
+STACK b :
+9
+8
+7
+5
+4
+3
+2
+1
+11
+
+
+PB
+nb_a = 1, nb_b = 10
+STACK a :
+6
+
+STACK b :
+10
+9
+8
+7
+5
+4
+3
+2
+1
+11
+
+
+PA
+nb_a = 2, nb_b = 9
+STACK a :
+10
+6
+
+STACK b :
+9
+8
+7
+5
+4
+3
+2
+1
+11
+
+
+PA
+nb_a = 3, nb_b = 8
+STACK a :
+9
+10
+6
+
+STACK b :
+8
+7
+5
+4
+3
+2
+1
+11
+
+
+PA
+nb_a = 4, nb_b = 7
+STACK a :
+8
+9
+10
+6
+
+STACK b :
+7
+5
+4
+3
+2
+1
+11
+
+
+PA
+nb_a = 5, nb_b = 6
+STACK a :
+7
+8
+9
+10
+6
+
+STACK b :
+5
+4
+3
+2
+1
+11
+
+
+PA
+nb_a = 6, nb_b = 5
+STACK a :
+5
+7
+8
+9
+10
+6
+
+STACK b :
+4
+3
+2
+1
+11
+
+
+PA
+nb_a = 7, nb_b = 4
+STACK a :
+4
+5
+7
+8
+9
+10
+6
+
+STACK b :
+3
+2
+1
+11
+
+
+PA
+nb_a = 8, nb_b = 3
+STACK a :
+3
+4
+5
+7
+8
+9
+10
+6
+
+STACK b :
+2
+1
+11
+
+
+PA
+nb_a = 9, nb_b = 2
+STACK a :
+2
+3
+4
+5
+7
+8
+9
+10
+6
+
+STACK b :
+1
+11
+
+
+PA
+nb_a = 10, nb_b = 1
+STACK a :
+1
+2
+3
+4
+5
+7
+8
+9
+10
+6
+
+STACK b :
+11
+
+
+PA
+nb_a = 11, nb_b = 0
+STACK a :
+11
+1
+2
+3
+4
+5
+7
+8
+9
+10
+6
+
+
+
+28 coups !
+nb_a = 11, nb_b = 0
+STACK a :
+11
+1
+2
+3
+4
+5
+7
+8
+9
+10
+6
+
+
+
